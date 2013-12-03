@@ -16,11 +16,11 @@ define glusterfs::volume::create (
   if ! $type_count {
     fail ('GlusterFS volume needs count parameter.')
   }
-  
+
   if ! $bricks {
     fail ('GlusterFS need parameter')
   }
-  
+
   if $mount {
     if ! $volume_mountpoint {
       fail ('GlusterFS mount parameter is true, volume_mountpoint is needed')
@@ -28,9 +28,9 @@ define glusterfs::volume::create (
   }
 
   exec{ "create_volume_${name}":
-    command => "/usr/sbin/gluster volume create ${name} ${type} ${type_count} ${bricks}",
-    user    => 'root',
-    unless  => "/usr/sbin/gluster volume info ${name}",
+    command   => "/usr/sbin/gluster volume create ${name} ${type} ${type_count} ${bricks}",
+    user      => 'root',
+    unless    => "/usr/sbin/gluster volume info ${name}",
     tries     => '10',
     try_sleep => '30'
   }

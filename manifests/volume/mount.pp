@@ -8,11 +8,11 @@ define glusterfs::volume::mount (
     if ! $volume_name {
       fail ('volume_name is needed')
     }
-  
+
     if ! $volume_mountpoint {
       fail ('volume_mountpoint is needed')
     }
-  
+
     mount{ $volume_mountpoint:
     ensure  => mounted,
     device  => "${::ipaddress_eth1}:${volume_name}",

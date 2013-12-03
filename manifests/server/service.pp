@@ -1,8 +1,8 @@
 class glusterfs::server::service {
 
   service{ 'glusterd':
-    enable     => true,
     ensure     => running,
+    enable     => true,
     hasstatus  => true,
     hasrestart => true,
   }
