@@ -1,0 +1,3 @@
+class glusterfs::server::config {
+}
+
