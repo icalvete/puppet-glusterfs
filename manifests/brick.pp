@@ -10,13 +10,6 @@ define glusterfs::brick (
     fail ('GlusterFS needs a device to create a brick.')
   }
 
-  if $fstype == 'xfs' {
-    package {'xfsprogs':
-      ensure => present,
-      before => Exec["mkfs_brick_${name}"]
-    }
-  }
-
   exec{ "mkfs_brick_${name}":
     command => "/sbin/mkfs.${fstype} -i size=512 ${dev}",
     user    => 'root',
@@ -24,7 +17,7 @@ define glusterfs::brick (
   }
 
   exec{ "create_brick_${name}_mountpoint":
-    command => "/bin/mkdir ${mountpoint}",
+    command => "/bin/mkdir -p ${mountpoint}",
     user    => 'root',
     unless  => "/usr/bin/test -d ${mountpoint}"
   }
