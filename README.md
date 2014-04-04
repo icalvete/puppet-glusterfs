@@ -9,7 +9,7 @@ See [GlusterFS site](http://www.gluster.org/)
 ##Example:
 
 
-```
+```puppet
 node /ubuntu0[0-9].smartpurposes.net/ inherits test_defaults {
   $volume_name = 'gais_home'
   $volume_data = {
